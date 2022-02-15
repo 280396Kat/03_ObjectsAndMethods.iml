@@ -8,10 +8,10 @@ public class Arithmetic {
         this.b = b;
     }
 
-    public int Addition() {return a + b;}
-    public int Multiplication() {return a * b;}
-    public int Max() {return a>b ? a:b;}
-    public int Min() {return a<b ? a:b;}
+    public int addition() {return a + b;}
+    public int multiplication() {return a * b;}
+    public int max() {return a>b ? a:b;}
+    public int min() {return a<b ? a:b;}
 
 }
 

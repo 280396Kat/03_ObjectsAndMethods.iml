@@ -9,10 +9,18 @@ public class Main {
 
 
         Arithmetic arithmetic = new Arithmetic(7, 9);
-        System.out.println(arithmetic.Addition());
-        System.out.println(arithmetic.Multiplication());
-        System.out.println(arithmetic.Max());
-        System.out.println(arithmetic.Min());
+        System.out.println(arithmetic.addition());
+        System.out.println(arithmetic.multiplication());
+        System.out.println(arithmetic.max());
+        System.out.println(arithmetic.min());
+
+
+
+        Printer printer = new Printer();
+        printer.append(" Текст документа ", " Имя докумета ", 69);
+        printer.print();
+
+
     }
 }
 
