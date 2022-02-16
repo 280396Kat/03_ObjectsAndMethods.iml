@@ -1,49 +1,46 @@
 public class Printer {
 
     private String queue = " ";
-    private static int countPages = 0;
-    private int totalPages = 0;
+    private int totalPagesCount = 0;
     private int pendingPages = 0;
 
 
-    public static int getCountPages() {
-        return countPages;
-    }
-
-    public static void increaseCountPages(int countPages) {
-        Printer.countPages = Printer.countPages + countPages;
-    }
-
     public void append(String text) {
+        queue = queue + "\n" + text;
+    }
+
+    public void append(String text, int pageCount) {
         append(text);
+        queue = queue + "   " + pageCount;
+        pendingPages = pendingPages + pageCount;
     }
 
-    public void append(String text, int pages) {
-        append(text, pages);
-    }
-
-    public void append(String text, String title, int pages) {
-        queue = queue + "\n" + text + " . " + title + " . " + pages + " cтр. ";
-        totalPages = totalPages + countPages * pages;
+    public void append(String text, String title, int pageCount) {
+        append(text, pageCount);
+        queue = queue + "    " + title;
     }
 
     public void clear() {
-        queue = "";
-        totalPages = 0;
+        queue = "\n Текст Имя  Количество страниц. ";
+        pendingPages = 0;
+        System.out.println("Список пуст");
     }
 
     public void print() {
         System.out.println(queue);
+        queue = " ";
+        totalPagesCount = totalPagesCount + pendingPages;
+        clear();
 
     }
 
     public int getPendingPagesCount() {
         return pendingPages;
-
     }
 
     public int getTotalPagesCount() {
-        return totalPages;
+        return totalPagesCount;
     }
+
 }
 
