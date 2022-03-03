@@ -2,9 +2,11 @@ public class Basket {
 
     private static int count = 0;
     private String items = "";
-    private int totalPrice = 0;
+    private  int totalPrice = 0;
     private int limit;
     private static double totalWeight = 0;
+    private static int totalCost = 0;
+    private static int totalBasketCount = 0;
 
     public Basket() {
         increaseCount(1);
@@ -22,6 +24,12 @@ public class Basket {
         this.items = this.items + items;
         this.totalPrice = totalPrice;
     }
+public static int getTotalCost(){
+        return totalCost;
+}
+public static int getTotalBasketCount(){
+        return totalBasketCount;
+}
 
     public static int getCount() {
         return count;
@@ -29,6 +37,19 @@ public class Basket {
 
     public static void increaseCount(int count) {
         Basket.count = Basket.count + count;
+    }
+
+    public static void sumTotalCost(int price, int count){
+        totalCost = totalCost + count * price;
+    }
+    public static void sumTotalBasketCount(int count){
+        totalBasketCount = totalBasketCount + count;
+    }
+    public static int averageProductPrice(){
+        return totalCost/totalBasketCount;
+    }
+    public static int averageCostBasket(){
+        return totalCost/count;
     }
 
     public void add(String name, int price) {
@@ -47,16 +68,20 @@ public class Basket {
         }
 
         if (error) {
-            System.out.println("Error occured :(");
+            System.out.println("Error occurred :(");
             return;
         }
 
     }
     public void add(String name, int price, int count, double weight) {
+        sumTotalCost(price,count);
+        sumTotalBasketCount(count);
         items = items + "\n" + name + " - " +
                 count + " шт. - " + price + " руб. - " + weight + " кг/л.";
         totalPrice = totalPrice + count * price;
         totalWeight = totalWeight + weight;
+
+
     }
 
     public void clear() {

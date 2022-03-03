@@ -2,8 +2,30 @@ public class Main {
 
     public static void main(String[] args) {
         Basket basket = new Basket();
-        basket.add("Milk", 40, 1, 0.5);
-        basket.print("Milk");
+
+        basket.add("Молоко", 40, 3, 0.5);
+        basket.add("Огурец соленый", 100, 2, 1);
+        basket.print("Корзина 1");
+
+
+
+
+        Basket basket1 = new Basket();
+
+        basket1.add("Дичь", 988,1, 1.2);
+        basket1.add("Вино Бароло", 6700, 1, 0.75);
+        basket1.print("Корзина 2");
+
+        System.out.println("Количество корзин");
+        System.out.println(Basket.getCount());
+        System.out.println("Общая стоимость");
+        System.out.println(Basket.getTotalCost());
+        System.out.println("Общее количество товара");
+        System.out.println(Basket.getTotalBasketCount());
+        System.out.println("Средняя цена товара");
+        System.out.println(Basket.averageProductPrice());
+        System.out.println("Средняя соимость корзины");
+        System.out.println(Basket.averageCostBasket());
 
 
 
