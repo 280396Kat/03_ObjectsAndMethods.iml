@@ -1,9 +1,9 @@
 public class Line {
-
     private String lineName;
     private String lineNumber;
 
     public Line(String lineName, String lineNumber) {
+
         this.lineName = lineName;
         this.lineNumber = lineNumber;
     }
