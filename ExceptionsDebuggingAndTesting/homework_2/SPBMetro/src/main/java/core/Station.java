@@ -3,13 +3,20 @@ package core;
 public class Station implements Comparable<Station>
 {
     private Line line;
-    private String name;
 
-    public Station(String name, Line line)
-    {
+    public Station(String name) {
         this.name = name;
-        this.line = line;
     }
+
+    private String name;
+    private String numberLine;
+
+    public Station(Line line, String name, String numberLine) {
+        this.line = line;
+        this.name = name;
+        this.numberLine = numberLine;
+    }
+
 
     public Line getLine()
     {
@@ -19,6 +26,10 @@ public class Station implements Comparable<Station>
     public String getName()
     {
         return name;
+    }
+
+    public String getNumberLine() {
+        return numberLine;
     }
 
     @Override
