@@ -2,6 +2,7 @@ package core;
 
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -42,8 +43,28 @@ public class ParserWeb {
         JSONArray jsonArray = new JSONArray();
         for (Element element : elements) {
             Line line = new Line(element.attr("data-line"), element.ownText());
+            jsonArray.add(line.getJsonObject());
+            lines.add(line);
         }
+        return jsonArray;
     }
+
+    public JSONObject parserStation() {
+        Elements elements = document.getElementsByClass("js-metro-stations t-metrostation-list-table");
+        JSONObject jsonObject = new JSONObject();
+        for (Element element : elements) {
+            JSONArray stationArray = new JSONArray();
+            Elements stations = element.getElementsByClass("name");
+            for (Element station : stations) {
+                stationArray.add(station.text());
+                jsonObject.put(element.attr("data-line"), stationArray);
+                memoryStations.addStation(new Station(station.text(), element.attr("data-line")));
+            }
+        }
+        return jsonObject;
+    }
+
+
 }
 
 

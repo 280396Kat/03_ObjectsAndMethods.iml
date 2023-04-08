@@ -59,9 +59,16 @@ public class DataMemoryCollector {
         JSONArray jsonArray = (JSONArray) parser.parse(getJsonFile());
         for(Object tmp : jsonArray) {
             JSONObject stationJson = (JSONObject) tmp;
-            String stationName = (String) stationJson.get("тут будет название станции");
+            String stationName = (String) stationJson.get("station_name");
             if (!mapStations.containsKey(stationName)) {
                 mapStations.put(stationName, new Station(stationName));
+            }
+            if(fileDoc.getName().startsWith("dates")) {
+                String date = (String) stationJson.get("dates");
+                mapStations.get(stationName).setDate(date);
+            } else if (fileDoc.getName().startsWith("depths")){
+                String depths = String.valueOf(stationJson.get("depth"));
+                mapStations.get(stationName).setDepth(depths);
             }
         }
     }
@@ -80,10 +87,10 @@ public class DataMemoryCollector {
                         if (!mapStations.containsKey(stationName)) {
                             mapStations.put(stationName, new Station(stationName));
                         }
-                        if (fileDoc.getName().startsWith("тут что-то будет")) {
-                            mapStations.get(stationName); // сюда нужно вернуться
-                        } else if (fileDoc.getName().startsWith("тут что-то будет")) {
-                            mapStations.get(stationName); // сюда нужно вернуться
+                        if (fileDoc.getName().startsWith("dates")) {
+                            mapStations.get(stationName).setDate(lines[i + 1]);
+                        } else if (fileDoc.getName().startsWith("depth")) {
+                            mapStations.get(stationName).setDepth(lines[i + 1]);
                         }
                     }
                 }
